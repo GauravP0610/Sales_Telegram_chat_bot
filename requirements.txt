@@ -1,0 +1,9 @@
+python-dotenv
+pymongo
+python-telegram-bot
+google-ai-generativelanguage
+google-generativeai
+requests
+schedule
+python-dateutil
+pandas

@@ -1,0 +1,4 @@
+from telegram_chatbot.f_telegram_chatbot_main import telegram_chatbot_main
+
+
+telegram_chatbot_main()
