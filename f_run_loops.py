@@ -1,4 +1,4 @@
-import os
+from config import Config
 import time
 import schedule
 from telegram_chatbot.analytics.f_chat_count_analytics_bot import bot_chat_counts
@@ -6,7 +6,7 @@ from telegram_chatbot.analytics.f_chat_count_analytics_user import user_chat_cou
 from telegram_chatbot.followup_functions.f_select_plan_loop import select_plan_loop
 
 # Get the bot token from environment variables
-TELEGRAM_BOT_TOKEN = os.getenv("BOT_TOKEN")
+TELEGRAM_BOT_TOKEN = Config.BOT_TOKEN
 
 if not TELEGRAM_BOT_TOKEN:
     raise ValueError("Error: BOT_TOKEN environment variable is not set!")

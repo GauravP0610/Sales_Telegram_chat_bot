@@ -1,11 +1,10 @@
-from dotenv import load_dotenv
+from config import Config
 from pymongo import MongoClient, UpdateOne, errors
 import os
 from datetime import datetime
 
-load_dotenv()
 
-CONNECTION_STRING = os.getenv("MONGO_URI")
+CONNECTION_STRING = Config.MONGO_URI
 client = MongoClient(CONNECTION_STRING)
 db = client['breakout']
 db_user = client['user_details']

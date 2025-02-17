@@ -1,15 +1,12 @@
 import logging
 from google.generativeai import configure
 import google.generativeai as genai
-from dotenv import load_dotenv
-import os
+from config import Config
 from common_imports import gemini_model
 
-# Load environment variables
-load_dotenv()
 
 # Configure the Gemini API
-configure(api_key=os.getenv("GEMINI_API_KEY")) 
+configure(api_key=Config.GEMINI_API_KEY) 
 
 def generate_gemini_response(prompt, model=gemini_model):
     try:
