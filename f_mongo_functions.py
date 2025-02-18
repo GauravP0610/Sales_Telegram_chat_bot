@@ -1,6 +1,6 @@
-from common_imports import telegram_chats, datetime, telegram_faqs
+"""Using MongoDB to store and retrieve messages and user details."""
 
-
+from common_imports import telegram_chats, datetime, telegram_faqs, telegram_display_messages, telegram_keyboard_text
 
 def save_message(chat_id, sender, message=None, file=None):
     """
@@ -106,4 +106,38 @@ def save_user_details(chat_id, user_details):
         {"$set": {"user_details": user_details}},  # Update the entire user_details sub-document
         upsert=True  # Create the document if it doesn't exist
     )
-    
+
+  
+# To get display messages from the collection telegram_display_messages
+
+def get_message(message_id):
+    """
+    Retrieve a message from the messages collection.
+    :param message_id: The ID of the message to retrieve.
+    :return: The message text or a default message if not found.
+    """
+    message = telegram_display_messages.find_one({"_id": message_id})
+    return message["text"] if message else "Message not found."
+
+# To get keyboard buttons from the collection telegram_keyboard_text
+
+def get_keyboard_text(group_id, button_id):
+    """
+    Retrieve a keyboard button text from the keyboard_text collection.
+    :param group_id: The ID of the group to search.
+    :param button_id: The ID of the button to retrieve within the group.
+    :return: The button text or a default message if not found.
+    """
+    group = telegram_keyboard_text.find_one({"_id": group_id})
+    if group and "buttons" in group:
+        for button in group["buttons"]:
+            if button["_id"] == button_id:
+                return button["text"]
+    return "Button not found."
+
+# Example usage:
+# text = get_keyboard_text("group_1", "1")
+
+
+
+

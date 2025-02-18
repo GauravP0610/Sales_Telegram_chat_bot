@@ -4,7 +4,6 @@ import google.generativeai as genai
 from config import Config
 from common_imports import gemini_model
 
-
 # Configure the Gemini API
 configure(api_key=Config.GEMINI_API_KEY) 
 
